@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive data dashboard analyzing Boston employee salary data from the 2014 Employee Earnings Report." />
+  <title>Boston Employee Salary Explorer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="#">Boston Salary Explorer</a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#methodology">Methodology</a>
+      </div>
+    </nav>
+
+    <section class="hero-content">
+      <div>
+        <p class="eyebrow">Public Data Analysis · JavaScript · DOM Rendering</p>
+        <h1>Boston Employee Salary Explorer</h1>
+        <p class="hero-text">
+          A portfolio-ready web dashboard that transforms a raw public payroll dataset into
+          clear metrics, rankings, and interactive salary insights.
+        </p>
+        <a class="button" href="#dashboard">View Dashboard</a>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section id="overview" class="section intro-grid">
+      <article>
+        <p class="eyebrow">Project Objective</p>
+        <h2>From coding exercise to professional data product</h2>
+        <p>
+          This project analyzes the City of Boston Employee Earnings Report and presents
+          the highest earners, compensation distribution, and employees earning more than
+          $100,000 in total earnings.
+        </p>
+      </article>
+      <aside class="project-card">
+        <h3>Skills Demonstrated</h3>
+        <ul>
+          <li>Data parsing and transformation</li>
+          <li>Array sorting, filtering, and aggregation</li>
+          <li>Dynamic HTML rendering with JavaScript</li>
+          <li>Responsive UI design with CSS</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="dashboard" class="section dashboard-section">
+      <div class="section-heading">
+        <p class="eyebrow">Dashboard</p>
+        <h2>Salary insights</h2>
+        <p>Use the controls to explore top earners and compensation thresholds.</p>
+      </div>
+
+      <div id="status" class="status" role="status">Loading salary data...</div>
+
+      <section class="metrics-grid" aria-label="Key salary metrics">
+        <article class="metric-card">
+          <span>Total Employees</span>
+          <strong id="totalEmployees">—</strong>
+        </article>
+        <article class="metric-card">
+          <span>Employees Above $100K</span>
+          <strong id="above100k">—</strong>
+        </article>
+        <article class="metric-card">
+          <span>Highest Total Earnings</span>
+          <strong id="highestEarnings">—</strong>
+        </article>
+        <article class="metric-card">
+          <span>Average Top 100</span>
+          <strong id="averageTop100">—</strong>
+        </article>
+      </section>
+
+      <section class="controls" aria-label="Dashboard controls">
+        <label>
+          Show top employees
+          <select id="topCount">
+            <option value="5">Top 5</option>
+            <option value="10" selected>Top 10</option>
+            <option value="25">Top 25</option>
+            <option value="50">Top 50</option>
+          </select>
+        </label>
+
+        <label>
+          Minimum earnings
+          <input id="salaryThreshold" type="number" min="0" step="10000" value="100000" />
+        </label>
+
+        <label>
+          Search employee, title, or department
+          <input id="searchInput" type="search" placeholder="Example: Police, Teacher, Library" />
+        </label>
+      </section>
+
+      <section class="table-card" aria-labelledby="tableTitle">
+        <div class="table-header">
+          <h3 id="tableTitle">Top earners</h3>
+          <p id="tableSummary">Sorted by total earnings.</p>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Department</th>
+                <th>Total Earnings</th>
+              </tr>
+            </thead>
+            <tbody id="salaryTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <section id="methodology" class="section methodology">
+      <p class="eyebrow">Methodology</p>
+      <h2>How the dashboard works</h2>
+      <div class="method-grid">
+        <article>
+          <h3>1. Parse</h3>
+          <p>The raw dataset is converted from indexed rows into readable employee objects.</p>
+        </article>
+        <article>
+          <h3>2. Analyze</h3>
+          <p>JavaScript functions calculate totals, thresholds, averages, and rankings.</p>
+        </article>
+        <article>
+          <h3>3. Render</h3>
+          <p>The interface updates dynamically when the user changes filters or search terms.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built as a portfolio project using HTML, CSS, and JavaScript.</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
