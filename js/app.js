@@ -22,6 +22,7 @@ const elements = {
   topCount: document.querySelector("#topCount"),
   salaryThreshold: document.querySelector("#salaryThreshold"),
   searchInput: document.querySelector("#searchInput"),
+  employeeSuggestions: document.querySelector("#employeeSuggestions"),
   salaryTableBody: document.querySelector("#salaryTableBody"),
   tableSummary: document.querySelector("#tableSummary"),
 };
@@ -39,6 +40,7 @@ async function loadSalaryData() {
     state.sortedEmployees = sortByTotalEarnings(state.employees);
 
     elements.status.textContent = "Dataset loaded successfully.";
+    renderSearchSuggestions();
     renderDashboard();
   } catch (error) {
     elements.status.textContent = "The salary dataset could not be loaded. Please run the project through a local server or GitHub Pages.";
@@ -87,6 +89,25 @@ function attachEventListeners() {
   elements.topCount.addEventListener("change", renderDashboard);
   elements.salaryThreshold.addEventListener("input", renderDashboard);
   elements.searchInput.addEventListener("input", renderDashboard);
+}
+
+function renderSearchSuggestions() {
+  const suggestions = new Set();
+
+  state.employees.forEach((employee) => {
+    suggestions.add(employee.name);
+    suggestions.add(employee.title);
+    suggestions.add(employee.department);
+  });
+
+  const sortedSuggestions = [...suggestions]
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b))
+    .slice(0, 1000);
+
+  elements.employeeSuggestions.innerHTML = sortedSuggestions
+    .map((suggestion) => `<option value="${suggestion}"></option>`)
+    .join("");
 }
 
 attachEventListeners();

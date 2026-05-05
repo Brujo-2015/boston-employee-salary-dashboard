@@ -99,7 +99,13 @@
 
         <label>
           Search employee, title, or department
-          <input id="searchInput" type="search" placeholder="Example: Police, Teacher, Library" />
+          <input
+            id="searchInput"
+            type="search"
+            list="employeeSuggestions"
+            placeholder="Example: Police, Teacher, Library"
+          />
+          <datalist id="employeeSuggestions"></datalist>
         </label>
       </section>
 
